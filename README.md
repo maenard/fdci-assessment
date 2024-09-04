@@ -10,12 +10,9 @@ To build the Docker container, run:
 
 ## 2. Set up environment
 
-```cp ./frontend/.env.example ./frontend/.env
-```
-```cp ./backend/.env.example ./backend/.env
-```
+```cp ./frontend/.env.example ./frontend/.env```
+```cp ./backend/.env.example ./backend/.env```
 
 ## 3. Run the application
 
-```docker compose up
-```
+```docker compose up```
