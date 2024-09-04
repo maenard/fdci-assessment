@@ -48,8 +48,6 @@ export default {
   components: {
     CustomButton: defineAsyncComponent(() => import('components/Widgets/CustomButton.vue')),
     CustomInput: defineAsyncComponent(() => import('components/Widgets/CustomInput.vue')),
-    CustomSelect: defineAsyncComponent(() => import('components/Widgets/CustomSelect.vue')),
-    CustomUploader: defineAsyncComponent(() => import('components/Widgets/CustomUploader.vue')),
   },
   data() {
     return {
@@ -76,14 +74,19 @@ export default {
 
     async onSubmit(){
       await api.get('/sanctum/csrf-cookie')
-      await api.post('/api/register', this.form)
+      await api.post('/api/auth/register', this.form)
         .then((response) => {
-          // data.value = response.data
+          this.$router.push('/thankyou')
       })
       .catch((err) => {
         const { data, status, statusText } = err.response
         const { errors } = data
         this.errors = errors
+
+        if (status == 401){
+          this.$router.push('/')
+        }
+
       })
     },
     onReset(){

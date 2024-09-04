@@ -9,7 +9,6 @@
         >
           <div class="col-12 col-md-7 q-pa-lg">
             <div class="full-height flex flex-center column q-py-xl">
-<!--               <img src="~/assets/logo.png" alt="Logo" class="h-auto w-1/2 py-2" /> -->
               <h2 class="text-center text-primary">FCDI</h2>
 
               <span class="w-3/4">
@@ -63,20 +62,11 @@ export default {
     async onSubmit() {
 
       await api.get('/sanctum/csrf-cookie')
-      await api.post('/api/login', this.form).then(res => {
+      await api.post('/api/auth/login', this.form).then(res => {
         const { data } = res
         const { message, body } = data
-        console.log(message, body)
+        this.$router.push('/contacts')
       })
-
-      /**
-       * test to verify if the logged user can send request
-       * to a sanctum protected api
-       *
-       * NOTE: You can remove this
-       */
-      await api.get('/api/user')
-
     },
     navigateToSignUp() {
       //NOTE: temporary routing

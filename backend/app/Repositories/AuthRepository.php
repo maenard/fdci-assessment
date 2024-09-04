@@ -25,7 +25,7 @@ class AuthRepository extends JsonResponseFormat
             ];
         }
 
-        $user = User::with(['files', 'role.abilities.route'])->find(Auth::id());
+        $user = User::find(Auth::id());
 
         return [
             'message' => 'Login successful',
@@ -54,6 +54,8 @@ class AuthRepository extends JsonResponseFormat
         DB::beginTransaction();
         try {
             $user = User::create($data);
+
+            Auth::login($user);
 
             DB::commit();
             return [

@@ -20,11 +20,9 @@ class JsonResponseFormat
             'error' => $data['error'] ?? null,
             'details' => [
                 'current_page' => $data['current_page'] ?? null,
-                'from' => isset($data['skip']) ? $data['skip'] + 1 : null,
+                'from' => $data['from'] ?? null,
                 'to' => $data['to'] ?? null,
                 'last_page' => $data['last_page'] ?? null,
-                'skip' => $data['skip'] ?? null,
-                'take' => $data['take'] ?? null,
                 'total' => $data['total'] ?? null,
             ],
             'body' => $data['body'] ?? null,
